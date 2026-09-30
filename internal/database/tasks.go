@@ -17,7 +17,7 @@ func NewTaskStore(db *sqlx.DB) *TaskStore {
 	return &TaskStore{db: db}
 }
 
-func GetAll(s *TaskStore) ([]models.Task, error) {
+func (s *TaskStore) GetAll() ([]models.Task, error) {
 	var tasks []models.Task
 
 	query := `SELECT * FROM tasks order by created_at desc;`
