@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"restapi-tasks/internal/models"
 	"time"
 
@@ -20,10 +21,11 @@ func NewTaskStore(db *sqlx.DB) *TaskStore {
 func (s *TaskStore) GetAll() ([]models.Task, error) {
 	var tasks []models.Task
 
-	query := `SELECT * FROM tasks order by created_at desc;`
+	query := `SELECT id, title, description, completed, created_at, updated_at FROM tasks order by created_at desc;`
 
 	err := s.db.Select(&tasks, query)
 	if err != nil {
+		log.Printf("TaskStore.GetAll failed: %v", err)
 		return nil, err
 	}
 
