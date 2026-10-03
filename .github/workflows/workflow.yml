@@ -1,5 +1,9 @@
 name: Github actions test
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - master
+      - main
 env:
   REGISTRY: veberav
   IMAGE_NAME: rest-api
