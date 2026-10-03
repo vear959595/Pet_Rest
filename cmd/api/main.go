@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	_ "restapi-tasks/cmd/api/docs"
+	_ "restapi-tasks/docs"
 	"restapi-tasks/internal/database"
 	"restapi-tasks/internal/handlers"
 
