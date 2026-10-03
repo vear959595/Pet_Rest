@@ -36,3 +36,27 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TRIMMED_SHA }}
 
+  deploy-dev:
+    needs: Build-docker-image
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    environment: Dev
+    steps:
+      - name: Execute remote SSH commands using password
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            mkdir -p /opt/rest-api
+            cat > /opt/rest-api/.env.dev <<EOF
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            DB_USER=${{ secrets.DB_USER }}
+            IMAGE_NAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TRIMMED_SHA }}
+            EOF
+
+#      - name: Deploy dev
+#        run: |
+#          docker compose --env-file .env.dev -f docker-compose-deploy.yaml

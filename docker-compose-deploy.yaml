@@ -1,6 +1,6 @@
 services:
   rest-api:
-    image: rest-api:v1
+    image: ${IMAGE_NAME}
     container_name: rest-api
     environment:
       TZ: Europe/Moscow
