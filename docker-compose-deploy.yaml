@@ -4,6 +4,7 @@ services:
     container_name: rest-api
     environment:
       TZ: Europe/Moscow
+      DATABASE_URL:
 
     ports:
       - "8080:8080"

@@ -38,7 +38,7 @@ jobs:
 
   deploy-dev:
     needs: Build-docker-image
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     environment: Dev
     steps:
