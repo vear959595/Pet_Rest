@@ -50,7 +50,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            mkdir -p /opt/rest-api
+            mkdir -p /opt/rest-api 
             cat > /opt/rest-api/.env.dev <<EOF
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             DB_USER=${{ secrets.DB_USER }}
