@@ -175,7 +175,7 @@ func (h *Handler) UpdateTask(w http.ResponseWriter, r *http.Request) {
 // @Failure      500  {object}  map[string]string  "Internal error"
 // @Router       /tasks/{id} [delete]
 func (h *Handler) DeleteTask(w http.ResponseWriter, r *http.Request) {
-	pathParts := strings.Split(strings.TrimPrefix(r.URL.Path, "tasks/"), "/")
+	pathParts := strings.Split(strings.TrimPrefix(r.URL.Path, "/tasks/"), "/")
 	idString := pathParts[0]
 	id, err := strconv.Atoi(idString)
 	if err != nil {
@@ -192,5 +192,5 @@ func (h *Handler) DeleteTask(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
-	respondWithJSON(w, http.StatusNoContent, nil)
+	respondWithJSON(w, http.StatusOK, map[string]string{"result": "success"})
 }

@@ -4,6 +4,8 @@ services:
   rest-api:
     image: rest-api:v1
     container_name: rest-api
+    environment:
+      TZ: Europe/Moscow
 
     ports:
       - "8080:8080"
@@ -15,6 +17,7 @@ services:
       POSTGRES_DB: tasksdb
       POSTGRES_USER: taskuser
       POSTGRES_PASSWORD: taskpass
+      TZ: Europe/Moscow
 
     ports:
       - "5432:5432"
