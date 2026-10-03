@@ -1,6 +1,6 @@
 module restapi-tasks
 
-go 1.26.5
+go 1.27.1
 
 require (
 	github.com/jmoiron/sqlx v1.4.0
