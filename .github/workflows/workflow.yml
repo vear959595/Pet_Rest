@@ -50,9 +50,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo -i
-            mkdir -p /opt/rest-api 
-            cat > /opt/rest-api/.env.dev <<EOF
+            sudo mkdir -p /opt/rest-api 
+            sudo cat > /opt/rest-api/.env.dev <<EOF
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             DB_USER=${{ secrets.DB_USER }}
             IMAGE_NAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TRIMMED_SHA }}
