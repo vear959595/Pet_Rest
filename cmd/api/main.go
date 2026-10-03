@@ -11,7 +11,7 @@ import (
 func main() {
 	databaseURL := os.Getenv("DATABASE_URL")
 	if databaseURL == "" {
-		databaseURL = "postgres://taskuser:taskpass@localhost:5432/tasksdb?sslmode=disable"
+		databaseURL = "postgres://taskuser:taskpass@postgres:5432/tasksdb?sslmode=disable"
 	}
 	serverPort := os.Getenv("SERVER_PORT")
 	if serverPort == "" {
