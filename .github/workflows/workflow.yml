@@ -11,8 +11,8 @@ jobs:
       - uses: priyesh2609/sha-trim-action@v1.1.2
         with:
           sha-length: 7
-          prefix: 'sha'
-          join-by: '-'
+          #prefix: 'sha'
+          #join-by: '-'
           env-name: 'TRIMMED_SHA'
 
       - name: Checkout commit
