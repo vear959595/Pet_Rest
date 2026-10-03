@@ -88,7 +88,7 @@ func (s *TaskStore) Update(id int, input models.UpdateTaskInput) (*models.Task, 
 returning id, title, description, completed, created_at, updated_at;`
 
 	var updatedTask models.Task
-	err = s.db.QueryRowx(query, task.Title, task.Description, task.Completed, task.CreatedAt, task.ID).StructScan(&updatedTask)
+	err = s.db.QueryRowx(query, task.Title, task.Description, task.Completed, task.UpdatedAt, task.ID).StructScan(&updatedTask)
 	if err != nil {
 		return nil, err
 
