@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"restapi-tasks/internal/database"
 	"restapi-tasks/internal/models"
@@ -40,13 +41,14 @@ func (h *Handler) GetAllTasks(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) GetTask(w http.ResponseWriter, r *http.Request) {
-	pathParts := strings.Split(strings.TrimPrefix(r.URL.Path, "tasks/"), "/")
+	pathParts := strings.Split(strings.TrimPrefix(r.URL.Path, "/tasks/"), "/")
 	idString := pathParts[0]
 
 	id, err := strconv.Atoi(idString)
 
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid task ID")
+		log.Printf(err.Error())
 		return
 	}
 
