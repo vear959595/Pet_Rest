@@ -51,6 +51,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             sudo mkdir -p /opt/rest-api 
+            sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /opt/rest-api
             sudo cat > /opt/rest-api/.env.dev <<EOF
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             DB_USER=${{ secrets.DB_USER }}
