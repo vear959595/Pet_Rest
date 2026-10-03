@@ -1,10 +1,12 @@
 name: Github actions test
 on: [push]
-run-name: Build docker image and deploy it via ssh
+run-name: Build docker image
 jobs:
   Builddocker-image:
     runs-on: ubuntu-24.04
     steps:
       - run: echo "${{ github.sha }}"
-     # - name: Checkout commit
-     #   uses: actions/checkout@"${{ github.sha }}"
+      - name: Checkout commit
+        uses: actions/checkout@v7.0.0
+        with:
+          ref: "${{ github.sha }}"
