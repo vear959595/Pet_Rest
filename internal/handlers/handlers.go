@@ -126,13 +126,14 @@ func (h *Handler) CreateTask(w http.ResponseWriter, r *http.Request) {
 // @Failure      500    {object}  map[string]string  "Internal error"
 // @Router       /tasks/{id} [put]
 func (h *Handler) UpdateTask(w http.ResponseWriter, r *http.Request) {
-	pathParts := strings.Split(strings.TrimPrefix(r.URL.Path, "tasks/"), "/")
+	pathParts := strings.Split(strings.TrimPrefix(r.URL.Path, "/tasks/"), "/")
 	idString := pathParts[0]
 
 	id, err := strconv.Atoi(idString)
 
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid task ID")
+		log.Printf(err.Error())
 		return
 	}
 	var input models.UpdateTaskInput
