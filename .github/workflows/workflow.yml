@@ -11,8 +11,6 @@ jobs:
       - uses: priyesh2609/sha-trim-action@v1.1.2
         with:
           sha-length: 7
-          #prefix: 'sha'
-          #join-by: '-'
           env-name: 'TRIMMED_SHA'
 
       - name: Checkout commit
@@ -22,3 +20,12 @@ jobs:
 
       - name: Build docker image
         run: docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TRIMMED_SHA }}
+
+  Push-image-to-docker-hub:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
