@@ -5,6 +5,6 @@ jobs:
   Builddocker-image:
     runs-on: ubuntu-24.04
     steps:
-      - run: echo ${{ GITHUB_SHA }}
+      - run: echo "${{ github.sha }}"
       - name: Checkout commit
-        uses: actions/checkout@${{ GITHUB_SHA }}
+        uses: actions/checkout@"${{ github.sha }}"
