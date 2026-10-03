@@ -52,7 +52,7 @@ jobs:
           script: |
             sudo mkdir -p /opt/rest-api 
             sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /opt/rest-api
-            sudo cat > /opt/rest-api/.env.dev <<EOF
+            cat > /opt/rest-api/.env.dev <<EOF
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             DB_USER=${{ secrets.DB_USER }}
             IMAGE_NAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TRIMMED_SHA }}
