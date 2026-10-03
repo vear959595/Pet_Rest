@@ -4,9 +4,18 @@ import (
 	"log"
 	"net/http"
 	"os"
+	_ "restapi-tasks/cmd/api/docs"
 	"restapi-tasks/internal/database"
 	"restapi-tasks/internal/handlers"
+
+	httpSwagger "github.com/swaggo/http-swagger"
 )
+
+// @title           Tasks API
+// @version         1.0
+// @description     REST API для управления задачами
+
+// @BasePath        /
 
 func main() {
 	databaseURL := os.Getenv("DATABASE_URL")
@@ -34,6 +43,9 @@ func main() {
 
 	mux := http.NewServeMux()
 
+	mux.Handle("/swagger/", httpSwagger.Handler(
+		httpSwagger.URL("/swagger/doc.json"),
+	))
 	mux.HandleFunc("/tasks", methodHandler(handler.GetAllTasks, "GET"))
 	mux.HandleFunc("/tasks/create", methodHandler(handler.CreateTask, "POST"))
 	mux.HandleFunc("/tasks/", taskIDHandler(handler))
