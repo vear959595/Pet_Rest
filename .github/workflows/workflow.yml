@@ -2,16 +2,23 @@ name: Github actions test
 on: [push]
 env:
   REGISTRY: veberav
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: rest-api
 run-name: Build docker image
 jobs:
   Build-docker-image:
     runs-on: ubuntu-24.04
     steps:
+      - uses: priyesh2609/sha-trim-action@v1.1.2
+        with:
+          sha-length: 7
+          prefix: 'sha'
+          join-by: '-'
+          env-name: 'TRIMMED_SHA'
+
       - name: Checkout commit
         uses: actions/checkout@v7.0.0
         with:
           ref: "${{ github.sha }}"
 
       - name: Build docker image
-        run: docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        run: docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TRIMMED_SHA }}
