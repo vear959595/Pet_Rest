@@ -2,7 +2,7 @@ name: Github actions test
 on: [push]
 env:
   REGISTRY: veberav
-  IMAGE_NAME: ${{ github.repostitory }}
+  IMAGE_NAME: ${{ github.repository }}
 run-name: Build docker image
 jobs:
   Build-docker-image:
