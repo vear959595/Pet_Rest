@@ -4,6 +4,7 @@ on:
     branches-ignore:
       - master
       - main
+  workflow_dispatch:
 env:
   REGISTRY: veberav
   IMAGE_NAME: rest-api
