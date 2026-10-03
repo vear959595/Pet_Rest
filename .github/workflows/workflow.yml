@@ -1,11 +1,17 @@
 name: Github actions test
 on: [push]
+env:
+  REGISTRY: veberav
+  IMAGE_NAME: ${{ github.repostitory }}
 run-name: Build docker image
 jobs:
-  Builddocker-image:
+  Build-docker-image:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout commit
         uses: actions/checkout@v7.0.0
         with:
           ref: "${{ github.sha }}"
+
+      - name: Build docker image
+        run: docker build . --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
