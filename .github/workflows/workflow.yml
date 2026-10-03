@@ -12,7 +12,7 @@ run-name: Build docker image
 jobs:
   Build-docker-image:
     runs-on: ubuntu-24.04
-    environment: docker
+    environment: General
     steps:
       - uses: priyesh2609/sha-trim-action@v1.1.2
         with:

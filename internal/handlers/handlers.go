@@ -66,10 +66,11 @@ func (h *Handler) CreateTask(w http.ResponseWriter, r *http.Request) {
 
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		log.Printf(err.Error())
 		return
 	}
 	if strings.TrimSpace(input.Title) == "" {
-		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		respondWithError(w, http.StatusBadRequest, "Empty title")
 		return
 	}
 
